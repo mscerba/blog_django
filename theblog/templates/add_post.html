@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Vytvořte nový článek!{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+	<h1>Přidat příspěvek</h1>
+	<br><br>
+
+	<div class="mb-3">
+<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.media }}
+			{{ form.as_p }}
+			<button class="btn btn-secondary">Přidat</button>
+		</form>
+	</div>
+
+	<script>
+		var name = "{{ user.id }}";
+		document.getElementById("elder").value = name;
+	</script>
+
+{% else %}
+Na tuto stránku nemáš práva, musíš se přihlásit.
+{% endif %}
+
+{% endblock %}

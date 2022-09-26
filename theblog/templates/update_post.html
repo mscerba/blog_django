@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Editace článku{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+	{% if user.id == post.author.id %}
+		<h1>Upravit příspěvek</h1>
+		<br><br>
+
+		<div class="mb-3">
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.media }}
+				{{ form.as_p }}
+				<button class="btn btn-secondary">Uložit</button>
+			</form>
+		</div>
+	{% else %}
+		Na tuto stránku nemáš práva, musíš se přihlásit.
+	{% endif %}
+{% else %}
+	Na tuto stránku nemáš práva, musíš se přihlásit.
+{% endif %}
+
+{% endblock %}

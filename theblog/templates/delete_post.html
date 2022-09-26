@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Smazání článku{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+	{% if user.id == post.author.id %}
+		<h1>Smazat příspěvek</h1>
+		<br><br>
+		<h3>Delete: {{ post.title }}</h3>
+		<br>
+
+		<div class="mb-3">
+			<form method="POST">
+				{% csrf_token %}
+				<strong>Jste si jistí, že chcete smazat příspěvek?!</strong><br><br>
+				<button class="btn btn-danger">SMAZAT PŘÍSPĚVEK!</button>
+			</form>
+		</div>
+	{% else %}
+		Na tuto stránku nemáš práva, musíš se přihlásit.
+	{% endif %}
+{% else %}
+Na tuto stránku nemáš práva, musíš se přihlásit.
+{% endif %}
+
+{% endblock %}

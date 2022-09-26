@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Vytvořte novou profilovou stránku{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Přidat novou profilovou stránku</h1>
+<br><br>
+
+<div class="mb-3">
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="btn btn-secondary">Uložit</button>
+	</form>
+</div>
+
+
+
+{% else %}
+Na tuto stránku nemáš práva, musíš se přihlásit.
+{% endif %}
+
+{% endblock %}

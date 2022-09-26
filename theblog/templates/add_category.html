@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Vytvořte novou kategorii!{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Přidat kategorii</h1>
+<br><br>
+
+<div class="mb-3">
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="btn btn-secondary">Přidat</button>
+	</form>
+</div>
+{% else %}
+Na tuto stránku nemáš práva, musíš se přihlásit.
+{% endif %}
+
+{% endblock %}
